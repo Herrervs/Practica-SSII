@@ -1,5 +1,5 @@
 package practica.behaviours;
 
-public class UpdateUIBehaviour {
+public class RecieveNewsBehaviour {
     
 }
