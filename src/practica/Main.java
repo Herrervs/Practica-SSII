@@ -8,12 +8,12 @@ import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
 
 public class Main {
-    private static final String AGENTE_ADQUISICION = "practica.agents.AgenteAdquisicion";
-    private static final String AGENTE_COORDINADOR = "practica.agents.AgenteCoordinador";
-    private static final String AGENTE_SENTIMIENTO = "practica.agents.AgenteSentimiento";
-    private static final String AGENTE_SESGO = "practica.agents.AgenteDetectorSesgo";
-    private static final String AGENTE_FUENTE = "practica.agents.AgenteVerificadorFuente";
-    private static final String AGENTE_VISUALIZACION = "practica.agents.AgenteVisualizacion";
+    private static final String AGENTE_ADQUISICION = "practica.agentes.AgenteAdquisicion";
+    private static final String AGENTE_COORDINADOR = "practica.agentes.AgenteCoordinador";
+    private static final String AGENTE_SENTIMIENTO = "practica.agentes.AgenteSentimiento";
+    private static final String AGENTE_SESGO = "practica.agentes.AgenteDetectorSesgo";
+    private static final String AGENTE_FUENTE = "practica.agentes.AgenteVerificadorFuente";
+    private static final String AGENTE_VISUALIZACION = "practica.agentes.AgenteVisualizacion";
 
     public static void main(String[] args) {
         try {
