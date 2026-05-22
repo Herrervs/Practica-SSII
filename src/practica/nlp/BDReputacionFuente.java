@@ -2,8 +2,8 @@ package practica.nlp;
 
 import java.util.Map;
 
-public class SourceReputationDB {
-    private static final Map<String, Double> SCORES = Map.of(
+public class BDReputacionFuente {
+    private static final Map<String, Double> PUNTUACIONES = Map.of(
         "bbc.com", 0.95,
         "reuters.com", 0.95,
         "elpais.com", 0.88,
@@ -13,11 +13,11 @@ public class SourceReputationDB {
         "okdiario.com", 0.35,
         "elplural.com", 0.40);
 
-    public double getScore(String sourceUrl) {
-        return SCORES.entrySet().stream()
-            .filter(e -> sourceUrl.contains(e.getKey()))
+    public double getPuntuacion(String urlFuente) {
+        return PUNTUACIONES.entrySet().stream()
+            .filter(entrada -> urlFuente.contains(entrada.getKey()))
             .mapToDouble(Map.Entry::getValue)
             .findFirst()
-            .orElse(0.5); // score neutro si no se conoce la fuente
+            .orElse(0.5); // puntuacion neutra si no se conoce la fuente
     }
 }

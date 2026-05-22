@@ -1,5 +1,5 @@
 package practica.agents;
 
-public class BiasDetectorAgent {
+public class AgenteSentimiento {
     
 }

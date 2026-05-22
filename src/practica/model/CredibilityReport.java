@@ -12,7 +12,7 @@ public class CredibilityReport implements Serializable {
     public static final String VERDICT_SUSPICIOUS = "SUSPICIOUS";
     public static final String VERDICT_UNRELIABLE = "UNRELIABLE";
 
-    private NewsItem newsItem;
+    private Noticia newsItem;
     private double sentimentScore;
     private double biasScore;
     private double sourceReputationScore;
@@ -26,17 +26,17 @@ public class CredibilityReport implements Serializable {
         this.verdict = VERDICT_SUSPICIOUS;
     }
 
-    public CredibilityReport(NewsItem newsItem) {
+    public CredibilityReport(Noticia noticia) {
         this();
-        this.newsItem = newsItem;
+        this.newsItem = noticia;
     }
 
-    public NewsItem getNewsItem() {
+    public Noticia getNoticia() {
         return newsItem;
     }
 
-    public void setNewsItem(NewsItem newsItem) {
-        this.newsItem = newsItem;
+    public void setNoticia(Noticia noticia) {
+        this.newsItem = noticia;
     }
 
     public double getSentimentScore() {
@@ -130,7 +130,7 @@ public class CredibilityReport implements Serializable {
 
     @Override
     public String toString() {
-        String title = newsItem == null ? "unknown" : newsItem.getTitle();
+        String title = newsItem == null ? "unknown" : newsItem.getTitulo();
         return "CredibilityReport{" +
                 "title='" + title + '\'' +
                 ", sentimentScore=" + sentimentScore +

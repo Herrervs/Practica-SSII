@@ -1,5 +1,5 @@
 package practica.agents;
 
-public class CoordinatorAgent {
+public class AgenteCoordinador {
     
 }
