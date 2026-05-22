@@ -4,7 +4,6 @@ import jade.core.Agent;
 import practica.comportamiento.ComportamientoObtenerNoticias;
 
 public class AgenteAdquisicion extends Agent {
-    private static final long serialVersionUID = 1L;
 
     @Override
     protected void setup() {

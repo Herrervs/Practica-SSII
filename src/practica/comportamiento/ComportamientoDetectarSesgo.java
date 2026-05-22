@@ -30,7 +30,7 @@ public class ComportamientoDetectarSesgo extends CyclicBehaviour {
                 ACLMessage respuesta = peticion.createReply();
                 respuesta.setPerformative(ACLMessage.INFORM);
                 respuesta.setContent(String.valueOf(scoreSesgo));
-                
+                respuesta.setOntology("deteccion-sesgo");
                 myAgent.send(respuesta);
                 System.out.println("[" + myAgent.getLocalName() + "] -> Análisis de sesgo completado para: " 
                         + noticia.getTitulo() + " (Score: " + scoreSesgo + ")");

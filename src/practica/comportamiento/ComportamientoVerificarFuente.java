@@ -30,7 +30,7 @@ public class ComportamientoVerificarFuente extends CyclicBehaviour {
                 ACLMessage respuesta = peticion.createReply();
                 respuesta.setPerformative(ACLMessage.INFORM);
                 respuesta.setContent(String.valueOf(scoreReputacion));
-                
+                respuesta.setOntology("verificacion-fuente");
                 myAgent.send(respuesta);
                 System.out.println("[" + myAgent.getLocalName() + "] -> Reputación de fuente verificada para '" 
                         + noticia.getFuente() + "' (Score: " + scoreReputacion + ")");
