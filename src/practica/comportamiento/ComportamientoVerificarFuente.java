@@ -1,4 +1,4 @@
-package practica.behaviours;
+package practica.comportamiento;
 
 public class ComportamientoVerificarFuente {
     

@@ -1,7 +1,7 @@
-package practica.agents;
+package practica.agentes;
 
 import jade.core.Agent;
-import practica.behaviours.ComportamientoObtenerNoticias;
+import practica.comportamiento.ComportamientoObtenerNoticias;
 
 public class AgenteAdquisicion extends Agent {
     private static final long serialVersionUID = 1L;

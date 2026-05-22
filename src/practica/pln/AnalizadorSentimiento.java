@@ -1,4 +1,4 @@
-package practica.nlp;
+package practica.pln;
 
 import java.util.Set;
 

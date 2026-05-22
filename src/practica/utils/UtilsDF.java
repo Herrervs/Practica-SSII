@@ -10,8 +10,8 @@ import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
-public class UtilidadesDF {
-    private UtilidadesDF() {
+public class UtilsDF {
+    private UtilsDF() {
     }
 
     public static void registrarServicio(Agent agente, String tipoServicio, String nombreServicio) {

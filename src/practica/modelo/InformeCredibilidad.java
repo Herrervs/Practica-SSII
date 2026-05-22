@@ -1,4 +1,4 @@
-package practica.model;
+package practica.modelo;
 
 import java.io.Serializable;
 import java.util.Collections;

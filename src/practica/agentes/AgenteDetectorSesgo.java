@@ -1,4 +1,4 @@
-package practica.agents;
+package practica.agentes;
 
 public class AgenteDetectorSesgo {
     

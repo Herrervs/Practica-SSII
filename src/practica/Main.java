@@ -7,7 +7,7 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
 
-public class LanzadorPrincipal {
+public class Main {
     private static final String AGENTE_ADQUISICION = "practica.agents.AgenteAdquisicion";
     private static final String AGENTE_COORDINADOR = "practica.agents.AgenteCoordinador";
     private static final String AGENTE_SENTIMIENTO = "practica.agents.AgenteSentimiento";
