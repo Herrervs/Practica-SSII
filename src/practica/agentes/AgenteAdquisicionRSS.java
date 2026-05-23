@@ -1,14 +1,14 @@
 package practica.agentes;
 
 import jade.core.Agent;
-import practica.comportamiento.ComportamientoObtenerNoticiasRSS; 
+import practica.behaviour.ObtenerNoticiasRSSBehaviour; 
 
 public class AgenteAdquisicionRSS extends Agent { 
 
     @Override
     protected void setup() {
         System.out.println("[ADQUISICION-RSS] ¡Hola! El agente " + getLocalName() + " ha arrancado."); 
-        addBehaviour(new ComportamientoObtenerNoticiasRSS(this, 20000)); 
+        addBehaviour(new ObtenerNoticiasRSSBehaviour(this, 20000)); 
     }
 
     @Override

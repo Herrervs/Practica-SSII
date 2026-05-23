@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -9,10 +9,10 @@ import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import practica.modelo.Noticia;
 
-public class FetchComportamientoNoticia extends TickerBehaviour {
+public class FetchNoticiaBehaviour extends TickerBehaviour {
 	private int contadorNoticias = 1;
 
-	public FetchComportamientoNoticia(Agent a, long period) {
+	public FetchNoticiaBehaviour(Agent a, long period) {
 		super(a, period);
 	}
 

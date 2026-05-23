@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -7,11 +7,11 @@ import jade.lang.acl.MessageTemplate;
 import practica.modelo.Noticia;
 import practica.pln.DetectorPalabrasClaveSesgo;
 
-public class ComportamientoDetectarSesgo extends CyclicBehaviour {
+public class DetectarSesgoBehaviour extends CyclicBehaviour {
     private static final long serialVersionUID = 1L;
     private final DetectorPalabrasClaveSesgo analistaSesgo;
 
-    public ComportamientoDetectarSesgo(Agent agente) {
+    public DetectarSesgoBehaviour(Agent agente) {
         super(agente);
         this.analistaSesgo = new DetectorPalabrasClaveSesgo();
     }

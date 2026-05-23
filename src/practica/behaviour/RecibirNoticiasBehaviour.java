@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -6,10 +6,10 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import practica.modelo.Noticia;
 
-public class ComportamientoRecibirNoticias extends CyclicBehaviour {
+public class RecibirNoticiasBehaviour extends CyclicBehaviour {
     private static final long serialVersionUID = 1L;
 
-    public ComportamientoRecibirNoticias(Agent agente) {
+    public RecibirNoticiasBehaviour(Agent agente) {
         super(agente);
     }
 

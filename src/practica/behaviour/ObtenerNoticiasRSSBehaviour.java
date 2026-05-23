@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -14,12 +14,12 @@ import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import practica.modelo.Noticia;
 
-public class ComportamientoObtenerNoticiasRSS extends TickerBehaviour {
+public class ObtenerNoticiasRSSBehaviour extends TickerBehaviour {
 	private int contadorNoticias = 1;
 
     private static final String URL_FEED = "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada";
 
-	public ComportamientoObtenerNoticiasRSS(Agent agente, long periodo) {
+	public ObtenerNoticiasRSSBehaviour(Agent agente, long periodo) {
 		super(agente, periodo);
 	}
 

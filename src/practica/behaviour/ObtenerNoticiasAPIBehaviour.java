@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -12,11 +12,11 @@ import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import practica.modelo.Noticia;
 
-public class ComportamientoObtenerNoticiasAPI extends TickerBehaviour {
+public class ObtenerNoticiasAPIBehaviour extends TickerBehaviour {
 	private int contadorNoticias = 1;
     private static final String API_URL = "https://newsapi.org/v2/top-headlines?country=es&apiKey=VUESTRA_API_KEY";
 
-	public ComportamientoObtenerNoticiasAPI(Agent agente, long periodo) {
+	public ObtenerNoticiasAPIBehaviour(Agent agente, long periodo) {
 		super(agente, periodo);
 	}
 

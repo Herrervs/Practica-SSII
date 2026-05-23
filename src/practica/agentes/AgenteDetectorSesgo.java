@@ -1,7 +1,7 @@
 package practica.agentes;
 
 import jade.core.Agent;
-import practica.comportamiento.ComportamientoDetectarSesgo;
+import practica.behaviour.DetectarSesgoBehaviour;
 import practica.utils.UtilsDF;
 
 public class AgenteDetectorSesgo extends Agent {
@@ -10,7 +10,7 @@ public class AgenteDetectorSesgo extends Agent {
     protected void setup() {
         System.out.println("[DETECTAR SESGO] Agente arrancado: " + getLocalName());
         UtilsDF.registrarServicio(this, "deteccion-sesgo", getLocalName());
-        addBehaviour(new ComportamientoDetectarSesgo(this));
+        addBehaviour(new DetectarSesgoBehaviour(this));
     }
 
     @Override

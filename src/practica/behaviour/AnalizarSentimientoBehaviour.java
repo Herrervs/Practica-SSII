@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -7,11 +7,11 @@ import jade.lang.acl.MessageTemplate;
 import practica.modelo.Noticia;
 import practica.pln.AnalizadorSentimiento;
 
-public class ComportamientoAnalizarSentimiento extends CyclicBehaviour {
+public class AnalizarSentimientoBehaviour extends CyclicBehaviour {
     private static final long serialVersionUID = 1L;
     private final AnalizadorSentimiento analizadorSentimiento;
 
-    public ComportamientoAnalizarSentimiento(Agent agente) {
+    public AnalizarSentimientoBehaviour(Agent agente) {
         super(agente);
         this.analizadorSentimiento = new AnalizadorSentimiento();
     }

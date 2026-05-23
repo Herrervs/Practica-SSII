@@ -1,7 +1,7 @@
 package practica.agentes;
 
 import jade.core.Agent;
-import practica.comportamiento.ComportamientoObtenerNoticias;
+import practica.behaviour.ObtenerNoticiasBehaviour;
 
 public class AgenteAdquisicion extends Agent {
 
@@ -10,7 +10,7 @@ public class AgenteAdquisicion extends Agent {
     	System.out.println("[ADQUISICION] ¡Hola! El agente " + getLocalName() + " ha arrancado.");
     	
     	// Añadimos el comportamiento para que genere una noticia cada 10 segundos (10000 ms)
-    	addBehaviour(new ComportamientoObtenerNoticias(this, 10000));
+    	addBehaviour(new ObtenerNoticiasBehaviour(this, 10000));
     }
     
     @Override

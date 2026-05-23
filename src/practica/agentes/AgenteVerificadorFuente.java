@@ -1,7 +1,7 @@
 package practica.agentes;
 
 import jade.core.Agent;
-import practica.comportamiento.ComportamientoVerificarFuente;
+import practica.behaviour.VerificarFuenteBehaviour;
 import practica.utils.UtilsDF;
 
 public class AgenteVerificadorFuente extends Agent {
@@ -10,7 +10,7 @@ public class AgenteVerificadorFuente extends Agent {
     protected void setup() {
         System.out.println("[VERIFICAR FUENTE] Agente arrancado: " + getLocalName());
         UtilsDF.registrarServicio(this, "verificacion-fuente", getLocalName());
-        addBehaviour(new ComportamientoVerificarFuente(this));
+        addBehaviour(new VerificarFuenteBehaviour(this));
     }
 
     @Override

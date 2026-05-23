@@ -1,4 +1,4 @@
-package practica.comportamiento;
+package practica.behaviour;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -7,11 +7,11 @@ import jade.lang.acl.MessageTemplate;
 import practica.modelo.Noticia;
 import practica.pln.BDReputacionFuente;
 
-public class ComportamientoVerificarFuente extends CyclicBehaviour {
+public class VerificarFuenteBehaviour extends CyclicBehaviour {
     private static final long serialVersionUID = 1L;
     private final BDReputacionFuente validadorFuentes;
 
-    public ComportamientoVerificarFuente(Agent agente) {
+    public VerificarFuenteBehaviour(Agent agente) {
         super(agente);
         this.validadorFuentes = new BDReputacionFuente();
     }
