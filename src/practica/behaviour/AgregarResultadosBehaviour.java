@@ -15,7 +15,8 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
     private static final String SERVICIO_FUENTE = "verificacion-fuente";
     private static final int TOTAL_RESPUESTAS_ESPERADAS = 3;
 
-    private final Map<String, InformeCredibilidad> informesPendientes = new ConcurrentHashMap<>(); // informe parcial acumulado
+    private final Map<String, InformeCredibilidad> informesPendientes = new ConcurrentHashMap<>(); // informe parcial
+                                                                                                   // acumulado
     private final Map<String, Integer> contadorRespuestas = new ConcurrentHashMap<>(); // numero de respuestas recibidas
 
     public AgregarResultadosBehaviour(Agent agente) {
@@ -84,6 +85,16 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
                 System.out.println("[" + myAgent.getLocalName() + "] INFORME DE CREDIBILIDAD COMPLETO");
                 System.out.println(informe);
                 System.out.println("========================================");
+
+                // Enviamos el informe al visualizador
+                ACLMessage informeFinal = new ACLMessage(ACLMessage.INFORM);
+                informeFinal.addReceiver(new jade.core.AID("agente-visualizacion", jade.core.AID.ISLOCALNAME));
+                try {
+                    informeFinal.setContentObject(informe);
+                    myAgent.send(informeFinal);
+                } catch (java.io.IOException e) {
+                    System.err.println("Error enviando informe al visualizador: " + e.getMessage());
+                }
 
                 informesPendientes.remove(idConversacion);
                 contadorRespuestas.remove(idConversacion);
