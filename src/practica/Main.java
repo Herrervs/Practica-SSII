@@ -7,6 +7,9 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 public class Main {
     private static final String AGENTE_ADQUISICION = "practica.agentes.AgenteAdquisicion";
     private static final String AGENTE_ADQUISICION_FICHERO = "practica.agentes.AgenteAdquisicionFichero";
@@ -17,6 +20,28 @@ public class Main {
     private static final String AGENTE_VISUALIZACION = "practica.agentes.AgenteVisualizacion";
 
     public static void main(String[] args) {
+        // Filtro para ocultar el falso error de Base64 de JADE 4.6.0 en Java modernos
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(new OutputStream() {
+            private StringBuilder buffer = new StringBuilder();
+
+            @Override
+            public void write(int b) {
+                if (b == '\n') {
+                    String line = buffer.toString();
+                    if (!line.contains("Missing support for Base64") &&
+                            !line.contains("===== E R R O R !!!") &&
+                            !line.contains("Please refer to the documentation") &&
+                            !line.contains("=============================================")) {
+                        originalErr.println(line);
+                    }
+                    buffer.setLength(0);
+                } else if (b != '\r') {
+                    buffer.append((char) b);
+                }
+            }
+        }));
+
         try {
             AgentContainer contenedor = crearContenedorPrincipal(deberiaMostrarGui(args));
 
