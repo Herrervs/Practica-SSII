@@ -57,9 +57,10 @@ public class ObtenerNoticiasRSSBehaviour extends TickerBehaviour {
             contadorNoticias++;
 
             // Dentro de cada <item> hay <title>, <description> y <link>
-            String titulo    = noticiaActual.getChildNodes().item(0).getTextContent();
-            String contenido = noticiaActual.getChildNodes().item(1).getTextContent();
-            String url       = noticiaActual.getChildNodes().item(2).getTextContent();
+            org.w3c.dom.Element elemento = (org.w3c.dom.Element) noticiaActual;
+            String titulo = elemento.getElementsByTagName("title").item(0).getTextContent().trim();
+            String contenido = elemento.getElementsByTagName("description").item(0).getTextContent();
+            String url       = elemento.getElementsByTagName("link").item(0).getTextContent();
 
             return new Noticia(
                 UUID.randomUUID().toString(), 

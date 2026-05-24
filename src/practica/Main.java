@@ -18,6 +18,8 @@ public class Main {
     private static final String AGENTE_SESGO = "practica.agentes.AgenteDetectorSesgo";
     private static final String AGENTE_FUENTE = "practica.agentes.AgenteVerificadorFuente";
     private static final String AGENTE_VISUALIZACION = "practica.agentes.AgenteVisualizacion";
+    private static final String AGENTE_ADQUISICION_RSS = "practica.agentes.AgenteAdquisicionRSS";
+    private static final String AGENTE_ADQUISICION_API = "practica.agentes.AgenteAdquisicionAPI";
 
     public static void main(String[] args) {
         // Filtro para ocultar el falso error de Base64 de JADE 4.6.0 en Java modernos
@@ -52,6 +54,8 @@ public class Main {
             iniciarAgente(contenedor, "agente-detector-sesgo", AGENTE_SESGO);
             iniciarAgente(contenedor, "agente-verificador-fuente", AGENTE_FUENTE);
             iniciarAgente(contenedor, "agente-visualizacion", AGENTE_VISUALIZACION);
+            iniciarAgente(contenedor, "agente-adquisicion-rss", AGENTE_ADQUISICION_RSS);
+            iniciarAgente(contenedor, "agente-adquisicion-api", AGENTE_ADQUISICION_API);
         } catch (StaleProxyException e) {
             System.err.println("No se pudieron iniciar los agentes JADE: " + e.getMessage());
             e.printStackTrace();
