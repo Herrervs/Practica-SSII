@@ -58,14 +58,15 @@ public class ObtenerNoticiasAPIBehaviour extends TickerBehaviour {
             // El JSON de NewsAPI tiene: "articles":[{"title":"...","description":"...","url":"...","source":{"name":"..."}}]
             String[] articulos = jsonGuardado.split("\\{\"source\"");
             if (contadorNoticias >= articulos.length) contadorNoticias = 1;
-
             String bloque = articulos[contadorNoticias];
             contadorNoticias++;
+            String sinSource = bloque.split("}")[1];
+
 
             // Extraer cada campo entre comillas
-            String titulo    = bloque.split("\"")[1];
-            String contenido = bloque.split("\"description\":\"")[1].split("\"")[0];
-            String url       = bloque.split("\"url\":\"")[1].split("\"")[0];
+            String titulo = sinSource.split("\"title\":\"")[1].split("\"")[0];
+            String contenido = sinSource.split("\"description\":\"")[1].split("\"")[0];
+            String url       = sinSource.split("\"url\":\"")[1].split("\"")[0];
             String fuente    = bloque.split("\"name\":\"")[1].split("\"")[0];
             return new Noticia(
                 UUID.randomUUID().toString(),  
