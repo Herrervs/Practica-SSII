@@ -1,6 +1,7 @@
 package practica.agentes;
 
 import jade.core.Agent;
+import jade.core.behaviours.WakerBehaviour;
 import practica.behaviour.ObtenerNoticiasFicheroBehaviour;
 
 public class AgenteAdquisicionFichero extends Agent {
@@ -9,8 +10,13 @@ public class AgenteAdquisicionFichero extends Agent {
     protected void setup() {
     	System.out.println("[ADQUISICION-FICHERO] ¡Hola! El agente " + getLocalName() + " ha arrancado.");
     	
-    	// Añadimos el comportamiento para que genere una noticia cada 10 segundos (10000 ms)
-    	addBehaviour(new ObtenerNoticiasFicheroBehaviour(this, 15000));
+    	// Retraso inicial de 2.5 segundos, periodo de 10 segundos
+    	addBehaviour(new WakerBehaviour(this, 2500) {
+            @Override
+            protected void onWake() {
+                myAgent.addBehaviour(new ObtenerNoticiasFicheroBehaviour(myAgent, 10000));
+            }
+        });
     }
     
     @Override
