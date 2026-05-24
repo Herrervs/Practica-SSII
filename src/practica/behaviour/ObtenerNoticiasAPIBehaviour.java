@@ -44,30 +44,25 @@ public class ObtenerNoticiasAPIBehaviour extends TickerBehaviour {
     private Noticia leerNoticiaDeAPI() {
         try {
             if (jsonGuardado == null) {
-                // Hacer la petición HTTP GET
                 HttpURLConnection conexion = (HttpURLConnection) new URI(API_URL).toURL().openConnection();
                 conexion.setRequestMethod("GET");
 
-                // Leer la respuesta completa
                 Scanner scanner = new Scanner(conexion.getInputStream());
                 StringBuilder respuesta = new StringBuilder();
                 while (scanner.hasNext()) respuesta.append(scanner.nextLine());
                 scanner.close();
                 jsonGuardado = respuesta.toString(); 
             }
-            // El JSON de NewsAPI tiene: "articles":[{"title":"...","description":"...","url":"...","source":{"name":"..."}}]
+            
             String[] articulos = jsonGuardado.split("\\{\"source\"");
             if (contadorNoticias >= articulos.length) contadorNoticias = 1;
             String bloque = articulos[contadorNoticias];
             contadorNoticias++;
-            String sinSource = bloque.split("}")[1];
-
-
-            // Extraer cada campo entre comillas
-            String titulo = sinSource.split("\"title\":\"")[1].split("\"")[0];
-            String contenido = sinSource.split("\"description\":\"")[1].split("\"")[0];
-            String url       = sinSource.split("\"url\":\"")[1].split("\"")[0];
-            String fuente    = bloque.split("\"name\":\"")[1].split("\"")[0];
+            String titulo = extraerValorJSON(bloque, "title");
+            String contenido = extraerValorJSON(bloque, "description");
+            String url = extraerValorJSON(bloque, "url");
+            String fuente = extraerValorJSON(bloque, "name");
+            
             return new Noticia(
                 UUID.randomUUID().toString(),  
                 titulo,
@@ -83,6 +78,15 @@ public class ObtenerNoticiasAPIBehaviour extends TickerBehaviour {
             return null;                       
         }
     }
-
+    
+    private String extraerValorJSON(String json, String clave) {
+        try {
+            java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("\"" + clave + "\"\\s*:\\s*\"(.*?)(?<!\\\\)\"").matcher(json);
+            if (matcher.find()) {
+                return matcher.group(1).replace("\\\"", "\"").replace("\\n", " ");
+            }
+        } catch (Exception e) {}
+        return "Desconocido";
+    }
 
 }
