@@ -1,0 +1,5 @@
+# Formato: titulo|contenido|fuente
+Reuters confirma nuevas medidas economicas|Reuters informa de nuevas medidas economicas aprobadas tras una reunion oficial. El texto evita afirmaciones anonimas y enlaza con fuentes institucionales.|reuters.com
+El gobierno oculta la verdad que no quieren que sepas|Segun fuentes anonimas, la elite prepara un plan urgente que cambiara la vida de todos. Todo el mundo habla de ello.|falsaurl.com
+RTVE publica un resumen de la jornada|RTVE resume los principales datos de la jornada con declaraciones contrastadas y contexto adicional para los lectores.|rtve.es
+Supuestamente los expertos dicen que habra una crisis total|Como todos saben, esta demostrado que el sistema esta al borde del desastre, aunque no se citan fuentes verificables.|okdiario.com

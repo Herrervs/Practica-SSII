@@ -7,6 +7,7 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import practica.modelo.InformeCredibilidad;
+import practica.modelo.Noticia;
 
 public class AgregarResultadosBehaviour extends CyclicBehaviour {
     private static final long serialVersionUID = 1L;
@@ -18,15 +19,23 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
     private final Map<String, InformeCredibilidad> informesPendientes = new ConcurrentHashMap<>(); // informe parcial
                                                                                                    // acumulado
     private final Map<String, Integer> contadorRespuestas = new ConcurrentHashMap<>(); // numero de respuestas recibidas
+    private final Map<String, Noticia> noticiasPendientes;
 
-    public AgregarResultadosBehaviour(Agent agente) {
+    public AgregarResultadosBehaviour(Agent agente, Map<String, Noticia> noticiasPendientes) {
         super(agente);
+        this.noticiasPendientes = noticiasPendientes;
     }
 
     @Override
     public void action() {
         // acepta respuestas INFORM de los expertos que tengan conversation-id
-        MessageTemplate plantilla = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
+        MessageTemplate plantilla = MessageTemplate.and(
+                MessageTemplate.MatchPerformative(ACLMessage.INFORM),
+                MessageTemplate.or(
+                        MessageTemplate.MatchOntology(SERVICIO_SENTIMIENTO),
+                        MessageTemplate.or(
+                                MessageTemplate.MatchOntology(SERVICIO_SESGO),
+                                MessageTemplate.MatchOntology(SERVICIO_FUENTE))));
         ACLMessage respuesta = myAgent.receive(plantilla);
 
         if (respuesta != null) {
@@ -36,7 +45,7 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
                 return;
             }
             InformeCredibilidad informe = informesPendientes.computeIfAbsent(
-                    idConversacion, k -> new InformeCredibilidad());
+                    idConversacion, k -> new InformeCredibilidad(noticiasPendientes.get(k)));
 
             double score;
             try {
@@ -89,6 +98,8 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
                 // Enviamos el informe al visualizador
                 ACLMessage informeFinal = new ACLMessage(ACLMessage.INFORM);
                 informeFinal.addReceiver(new jade.core.AID("agente-visualizacion", jade.core.AID.ISLOCALNAME));
+                informeFinal.setConversationId(idConversacion);
+                informeFinal.setOntology("informe-credibilidad");
                 try {
                     informeFinal.setContentObject(informe);
                     myAgent.send(informeFinal);
@@ -98,6 +109,7 @@ public class AgregarResultadosBehaviour extends CyclicBehaviour {
 
                 informesPendientes.remove(idConversacion);
                 contadorRespuestas.remove(idConversacion);
+                noticiasPendientes.remove(idConversacion);
             }
         } else {
             block();

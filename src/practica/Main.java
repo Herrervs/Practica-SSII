@@ -9,6 +9,7 @@ import jade.wrapper.StaleProxyException;
 
 public class Main {
     private static final String AGENTE_ADQUISICION = "practica.agentes.AgenteAdquisicion";
+    private static final String AGENTE_ADQUISICION_FICHERO = "practica.agentes.AgenteAdquisicionFichero";
     private static final String AGENTE_COORDINADOR = "practica.agentes.AgenteCoordinador";
     private static final String AGENTE_SENTIMIENTO = "practica.agentes.AgenteSentimiento";
     private static final String AGENTE_SESGO = "practica.agentes.AgenteDetectorSesgo";
@@ -20,6 +21,7 @@ public class Main {
             AgentContainer contenedor = crearContenedorPrincipal(deberiaMostrarGui(args));
 
             iniciarAgente(contenedor, "agente-adquisicion", AGENTE_ADQUISICION);
+            iniciarAgente(contenedor, "agente-adquisicion-fichero", AGENTE_ADQUISICION_FICHERO);
             iniciarAgente(contenedor, "agente-coordinador", AGENTE_COORDINADOR);
             iniciarAgente(contenedor, "agente-sentimiento", AGENTE_SENTIMIENTO);
             iniciarAgente(contenedor, "agente-detector-sesgo", AGENTE_SESGO);

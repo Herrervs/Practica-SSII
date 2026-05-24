@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.UUID;
 import java.nio.file.Files;             
 import java.nio.file.Paths;
+import java.util.List;
 
 import jade.core.AID;
 import jade.core.Agent;
@@ -12,7 +13,7 @@ import jade.lang.acl.ACLMessage;
 import practica.modelo.Noticia;
 
 public class ObtenerNoticiasFicheroBehaviour extends TickerBehaviour {
-	private int contadorNoticias = 1;
+	private int contadorNoticias = 0;
 
 	public ObtenerNoticiasFicheroBehaviour(Agent agente, long periodo) {
 		super(agente, periodo);
@@ -26,6 +27,8 @@ public class ObtenerNoticiasFicheroBehaviour extends TickerBehaviour {
 
 		ACLMessage mensaje = new ACLMessage(ACLMessage.INFORM);
 		mensaje.addReceiver(new AID("agente-coordinador", AID.ISLOCALNAME));
+		mensaje.setConversationId(noticia.getId());
+		mensaje.setOntology(DelegarAnalisisBehaviour.ONTOLOGIA_NOTICIA_NUEVA);
 
 		try {
 			mensaje.setContentObject(noticia);
@@ -37,20 +40,30 @@ public class ObtenerNoticiasFicheroBehaviour extends TickerBehaviour {
     }
     private Noticia leerNoticiaDeFichero() {
         try {
-            String contenidoFichero = new String(Files.readAllBytes(Paths.get("resources/noticias.txt")));
-            String[] lineas = contenidoFichero.split("\n");
+            List<String> lineas = Files.readAllLines(Paths.get("resources/noticias.txt"));
+            lineas.removeIf(linea -> linea.trim().isEmpty() || linea.trim().startsWith("#"));
 
-            if (contadorNoticias >= lineas.length) contadorNoticias = 0;
+            if (lineas.isEmpty()) {
+                System.err.println("[ADQUISICION-FICHERO] El fichero resources/noticias.txt no contiene noticias");
+                return null;
+            }
 
-            String linea = lineas[contadorNoticias];
+            if (contadorNoticias >= lineas.size()) contadorNoticias = 0;
+
+            String linea = lineas.get(contadorNoticias);
             contadorNoticias++;
 
-            String[] partes = linea.split("\\|");
+            String[] partes = linea.split("\\|", -1);
+            if (partes.length < 3) {
+                System.err.println("[ADQUISICION-FICHERO] Linea invalida. Formato esperado: titulo|contenido|fuente");
+                return null;
+            }
+
             return new Noticia(
                 UUID.randomUUID().toString(),  
-                partes[0],
-                partes[1],
-                partes[2],
+                partes[0].trim(),
+                partes[1].trim(),
+                partes[2].trim(),
                 "Desconocido",
                 "",
                 "2025-01-01"

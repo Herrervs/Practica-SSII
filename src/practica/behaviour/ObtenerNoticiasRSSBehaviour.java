@@ -31,6 +31,8 @@ public class ObtenerNoticiasRSSBehaviour extends TickerBehaviour {
 
 		ACLMessage mensaje = new ACLMessage(ACLMessage.INFORM);
 		mensaje.addReceiver(new AID("agente-coordinador", AID.ISLOCALNAME));
+		mensaje.setConversationId(noticia.getId());
+		mensaje.setOntology(DelegarAnalisisBehaviour.ONTOLOGIA_NOTICIA_NUEVA);
 
 		try {
 			mensaje.setContentObject(noticia);

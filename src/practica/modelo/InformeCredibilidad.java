@@ -97,8 +97,8 @@ public class InformeCredibilidad implements Serializable {
     }
 
     public void calcularPuntuacionFinal() {
-        double sentimientoNormalizado = 1.0 - Math.abs(limitar(puntuacionSentimiento));
-        double sesgoNormalizado = 1.0 - limitar(puntuacionSesgo);
+        double sentimientoNormalizado = limitar(puntuacionSentimiento);
+        double sesgoNormalizado = limitar(puntuacionSesgo);
         double puntuacion = (puntuacionReputacionFuente * 0.40)
                 + (sesgoNormalizado * 0.35)
                 + (sentimientoNormalizado * 0.25);

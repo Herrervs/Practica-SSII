@@ -21,6 +21,8 @@ public class FetchNoticiaBehaviour extends TickerBehaviour {
 		Noticia noticiaPrueba = crearNoticiaPrueba();
 		ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
 		msg.addReceiver(new AID("coordinador-agent", AID.ISLOCALNAME));
+		msg.setConversationId(noticiaPrueba.getId());
+		msg.setOntology(DelegarAnalisisBehaviour.ONTOLOGIA_NOTICIA_NUEVA);
 
 		try {
 			msg.setContentObject(noticiaPrueba);
